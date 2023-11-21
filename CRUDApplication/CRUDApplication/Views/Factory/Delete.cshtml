@@ -1,0 +1,22 @@
+﻿@model Factory
+@{
+    ViewData["Title"] = "Delete Factory";
+}
+<div class="container shadow p-5">
+    <div class="row">
+        <h2>Delete Factory</h2>
+    </div>
+
+    <form method="post" asp-action="DeleteFactory">
+        <input asp-for="FactoryId" hidden />
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Factory ID : @Model.FactoryId</h5>
+                <p class="card-text">Factory : @Model.FactoryName</p>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a asp-controller="Factory" asp-action="Index" class="btn btn-primary">Back To List</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,11 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<TodoContext>(opt =>
+    opt.UseSqlServer(
+        builder.Configuration.GetConnectionString("CRUDApplicationConnetionString")
+        )
+        );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
@@ -16,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Factory>
+@{
+    ViewData["Title"] = "Factory List";
+}
+
+
+<div class="container shadow p-5">
+    @if (TempData["SuccessMsg"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMsg"]
+        </div>
+    }
+    <h1 class="text-center">Factory List</h1>
+    <div class="col mb-3">
+        <a asp-controller="Factory" asp-action="Create" class="btn btn-primary">Add Factory</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Factory Id</th>
+                <th scope="col"> Factory Name</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="30%">
+                        @item.FactoryId
+                    </td>
+                    <td width="40%">
+                        @item.FactoryName
+                    </td>
+                    <td width="30%">
+                        <a asp-controller="Factory" asp-action="Edit" asp-route-FactoryId="@item.FactoryId" class=" btn btn-primary">Edit</a>&nbsp;
+                        <a asp-controller="Factory" asp-action="Delete" asp-route-FactoryId="@item.FactoryId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

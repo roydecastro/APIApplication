@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Simple MVC CRUD</p>
+</div>
+
+<div class="text-center">
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Index", "Product")">Proceed to Product List</a>
+        <a class="btn btn-success" href="@Url.Action("Index", "Category")">Proceed to Category List</a>
+        <a class="btn btn-success" href="@Url.Action("Index", "Factory")">Proceed to Factory List</a>
+    </p>
+</div>

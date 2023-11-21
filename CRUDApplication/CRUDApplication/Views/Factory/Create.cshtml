@@ -1,0 +1,20 @@
+﻿@model Factory
+@{
+    ViewData["Title"] = "Create Factory";
+}
+
+<div class="container shadow p-5">
+    <div class="row">
+        <h1>Add Factory</h1>
+    </div>
+    <form method="post">
+        @*<div asp-validation-summary="All" class="alert-danger"></div> *@
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" asp-for="FactoryName" placeholder="Enter factory name" />
+            <label for="FactoryName">Factory Name</label>
+            <span asp-validation-for="FactoryName" class="alert-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-controller="Factory" asp-action="Index" class="btn btn-primary">Back</a>
+    </form>
+</div>

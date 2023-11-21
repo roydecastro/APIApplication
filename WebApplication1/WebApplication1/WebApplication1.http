@@ -1,0 +1,10 @@
+﻿@WebApplication1_HostAddress = https://localhost:7067
+
+POST {{WebApplication1_HostAddress}}/todoitems
+Content-Type: application/json
+
+{
+  "name":"walk dog",
+  "isComplete":true
+}
+###

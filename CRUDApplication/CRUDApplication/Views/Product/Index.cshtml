@@ -1,0 +1,88 @@
+﻿@using CRUDApplication.ViewModel
+@model List<ProductListViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container shadow p-5">
+    @if (TempData["SuccessMsg"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMsg"]
+        </div>
+    }
+    <h1 class="text-center">Product List</h1>
+
+    <div class="col mb-3">
+        <a asp-controller="Product" asp-action="Create" class="btn btn-primary">Add Product</a>
+    </div>
+
+    <div class="container">
+        <table id="productTable" class="table table-light table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Factory</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="15%">@item.Name</td>
+                        <td width="10%">@item.Description</td>
+                        <td width="10%">@item.Price</td>
+                        <td width="10%">@item.Color</td>
+                        <td width="10%">@item.CategoryName</td>
+                        <td width="15%"><img src="@item.Image" class="img-thumbnail custom-image" /></td>
+                        <td width="10%">@item.FactoryName</td>
+                        <td>
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
+                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#productTable').DataTable({
+                "paging": true,
+                "pageLength": 10,
+                "dom": '<"row"<"col-md-6"l><"col-md-6"Bf>><"row"<"col-md-12"rt>><"row"<"col-md-6"i><"col-md-6"p>>',
+
+                "buttons": [
+                    'copy', 'excel', 'csv', 'print',
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Product List',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+
+            // Move DataTable buttons to the right
+            var buttonsContainer = $('.dt-buttons');
+            buttonsContainer.addClass('d-flex justify-content-end');
+        });
+    </script>
+    <style>
+        .custom-image {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+}
